@@ -3,7 +3,7 @@
  <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     我的相册
+     <title>郎天豪的美照</title>
      <style>
          *{margin:0;padding:0;box-sizing:border-box;}
          body{
@@ -27,15 +27,36 @@
          }
          .box img{
              width:100%;
-             height:220px;
-             object-fit:cover;
              border-radius:12px;
              transition:0.3s;
              box-shadow:0 2px 8px #00000018;
+             cursor:pointer;
          }
          .box img:hover{
-             transform:scale(1.05);
+             transform:scale(1.03);
              box-shadow:0 8px 20px #00000028;
+         }
+         /* 放大弹窗样式 */
+         .lightbox{
+             position:fixed;
+             top:0;
+             left:0;
+             width:100%;
+             height:100%;
+             background:rgba(0,0,0,0.85);
+             display:none;
+             align-items:center;
+             justify-content:center;
+             z-index:999;
+             padding:20px;
+         }
+         .lightbox img{
+             max-width:95%;
+             max-height:95%;
+             border-radius:8px;
+         }
+         .lightbox.show{
+             display:flex;
          }
          @media (max-width:768px){
              .box{grid-template-columns:1fr 1fr;}
@@ -46,15 +67,27 @@
      </style>
  </head>
  <body>
-     <h1 class="title">我的专属相册</h1>
+     <h1 class="title">郎天豪的相册</h1>
      <div class="box">
-         <!-- ==========这里放你的照片========== -->
-         <img src="1.jpg">
-         <img src="2.jpg">
-         <img src="3.jpg">
-         <img src="4.jpg">
-         <img src="5.jpg">
-         <img src="6.jpg">
+         <img src="1.jpg" onclick="openImg('1.jpg')">
+         <img src="2.jpg" onclick="openImg('2.jpg')">
+         <img src="3.jpg" onclick="openImg('3.jpg')">
+         <img src="4.jpg" onclick="openImg('4.jpg')">
+         <img src="5.jpg" onclick="openImg('5.jpg')">
+         <img src="6.jpg" onclick="openImg('6.jpg')">
      </div>
+     <!-- 放大弹窗 -->
+     <div class="lightbox" id="lightbox" onclick="closeImg()">
+         <img id="bigImg">
+     </div>
+     <script>
+         function openImg(src){
+             document.getElementById("bigImg").src = src;
+             document.getElementById("lightbox").classList.add("show");
+         }
+         function closeImg(){
+             document.getElementById("lightbox").classList.remove("show");
+         }
+     </script>
  </body>
  </html>
