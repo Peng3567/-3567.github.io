@@ -6,17 +6,18 @@
 <title>二班相册</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#111;color:#fff;}
+body{background:#ffffff;color:#111111;}
 
 .tip{
   text-align:center;
-  font-size:20px;
-  padding:15px;
-  color:#ffffff;
+  font-size:22px;
+  padding:20px 10px;
+  color:#333333;
+  font-weight:bold;
 }
 
 #album{
-  padding:20px;
+  padding:0 20px 20px;
 }
 .photo-grid{
   display:grid;
@@ -40,7 +41,7 @@ body{background:#111;color:#fff;}
   position:fixed;
   top:0;left:0;
   width:100vw;height:100vh;
-  background:rgba(0,0,0,0.95);
+  background:rgba(0,0,0,0.85);
   display:none;
   align-items:center;
   justify-content:center;
@@ -60,10 +61,11 @@ body{background:#111;color:#fff;}
   transform:translateY(-50%);
   font-size:40px;
   color:#fff;
-  background:rgba(255,255,255,0.15);
+  background:rgba(0,0,0,0.35);
   border:none;
   width:50px;height:80px;
   cursor:pointer;
+  border-radius:8px;
 }
 .prev{left:20px;}
 .next{right:20px;}
@@ -73,7 +75,7 @@ body{background:#111;color:#fff;}
 <div class="tip">📱推荐把手机横向旋转，获得更好浏览效果</div>
 
 <div id="album">
-  <h2 style="text-align:center;margin-bottom:20px;text-align:center;">我的相册</h2>
+  <h2 style="text-align:center;margin-bottom:20px;color:#111;">二班相册</h2>
   <div class="photo-grid">
     <img src="1.jpg" onclick="openImg(0)">
     <img src="2.jpg" onclick="openImg(1)">
@@ -186,7 +188,6 @@ body{background:#111;color:#fff;}
 </div>
 
 <script>
-// 图片数组：1.jpg ~100.jpg
 const images = [];
 for(let i=1;i<=100;i++){
   images.push(`${i}.jpg`);
@@ -195,23 +196,19 @@ let currentIndex = 0;
 const lb = document.getElementById("lightbox");
 const lbImg = document.getElementById("lightImg");
 
-// 打开图片
 function openImg(idx){
   currentIndex = idx;
   lbImg.src = images[currentIndex];
   lb.classList.add("active");
 }
-// 关闭
 function closeImg(){
   lb.classList.remove("active");
 }
-// 上一张
 function prevImg(e){
   e.stopPropagation();
   currentIndex = (currentIndex -1 + images.length) % images.length;
   lbImg.src = images[currentIndex];
 }
-// 下一张
 function nextImg(e){
   e.stopPropagation();
   currentIndex = (currentIndex +1) % images.length;
