@@ -6,34 +6,63 @@
 <title>二班相册</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{background:#ffffff;color:#111111;}
+body{
+  background:#ffffff;
+  color:#111;
+  font-family:Arial,"Microsoft YaHei",sans-serif;
+}
+
+.header{
+  padding:16px 20px;
+  border-bottom:1px solid #eee;
+  position:sticky;
+  top:0;
+  background:#fff;
+  z-index:10;
+}
+.header h1{
+  font-size:20px;
+  text-align:center;
+}
 
 .tip{
   text-align:center;
-  font-size:22px;
-  padding:20px 10px;
-  color:#333333;
-  font-weight:bold;
+  font-size:14px;
+  color:#666;
+  margin-top:6px;
 }
 
-#album{
-  padding:0 20px 20px;
+/* 横向滚动相册 */
+.album-wrap{
+  display:flex;
+  gap:12px;
+  padding:20px;
+  overflow-x:auto;
+  overflow-y:hidden;
+  scroll-behavior:smooth;
+  height:calc(100vh - 90px);
+  align-items:center;
 }
-.photo-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px,1fr));
-  gap:16px;
-}
-.photo-grid img{
-  width:100%;
-  height:160px;
-  object-fit:cover;
-  border-radius:8px;
+
+.album-wrap img{
+  flex:0 0 auto;
+  max-width:90vw;
+  max-height:80vh;
+  height:auto;
+  width:auto;
+  object-fit:contain;
+  border-radius:10px;
+  box-shadow:0 4px 14px rgba(0,0,0,0.08);
   cursor:pointer;
-  transition:0.2s;
 }
-.photo-grid img:hover{
-  transform:scale(1.03);
+
+/* 隐藏横向滚动条但保留功能 */
+.album-wrap::-webkit-scrollbar{
+  height:8px;
+}
+.album-wrap::-webkit-scrollbar-thumb{
+  background:#ccc;
+  border-radius:4px;
 }
 
 /* 图片放大弹窗 */
@@ -41,7 +70,7 @@ body{background:#ffffff;color:#111111;}
   position:fixed;
   top:0;left:0;
   width:100vw;height:100vh;
-  background:rgba(0,0,0,0.85);
+  background:rgba(0,0,0,0.9);
   display:none;
   align-items:center;
   justify-content:center;
@@ -51,136 +80,135 @@ body{background:#ffffff;color:#111111;}
   display:flex;
 }
 #lightbox img{
-  max-width:90vw;
-  max-height:90vh;
+  max-width:95vw;
+  max-height:95vh;
 }
-/* 左右翻页按钮 */
 .prev, .next{
   position:absolute;
   top:50%;
   transform:translateY(-50%);
-  font-size:40px;
+  font-size:44px;
   color:#fff;
-  background:rgba(0,0,0,0.35);
+  background:rgba(255,255,255,0.15);
   border:none;
   width:50px;height:80px;
   cursor:pointer;
   border-radius:8px;
 }
-.prev{left:20px;}
-.next{right:20px;}
+.prev{left:16px;}
+.next{right:16px;}
 </style>
 </head>
 <body>
-<div class="tip">📱推荐把手机横向旋转，获得更好浏览效果</div>
 
-<div id="album">
-  <h2 style="text-align:center;margin-bottom:20px;color:#111;">二班相册</h2>
-  <div class="photo-grid">
-    <img src="1.jpg" onclick="openImg(0)">
-    <img src="2.jpg" onclick="openImg(1)">
-    <img src="3.jpg" onclick="openImg(2)">
-    <img src="4.jpg" onclick="openImg(3)">
-    <img src="5.jpg" onclick="openImg(4)">
-    <img src="6.jpg" onclick="openImg(5)">
-    <img src="7.jpg" onclick="openImg(6)">
-    <img src="8.jpg" onclick="openImg(7)">
-    <img src="9.jpg" onclick="openImg(8)">
-    <img src="10.jpg" onclick="openImg(9)">
-    <img src="11.jpg" onclick="openImg(10)">
-    <img src="12.jpg" onclick="openImg(11)">
-    <img src="13.jpg" onclick="openImg(12)">
-    <img src="14.jpg" onclick="openImg(13)">
-    <img src="15.jpg" onclick="openImg(14)">
-    <img src="16.jpg" onclick="openImg(15)">
-    <img src="17.jpg" onclick="openImg(16)">
-    <img src="18.jpg" onclick="openImg(17)">
-    <img src="19.jpg" onclick="openImg(18)">
-    <img src="20.jpg" onclick="openImg(19)">
-    <img src="21.jpg" onclick="openImg(20)">
-    <img src="22.jpg" onclick="openImg(21)">
-    <img src="23.jpg" onclick="openImg(22)">
-    <img src="24.jpg" onclick="openImg(23)">
-    <img src="25.jpg" onclick="openImg(24)">
-    <img src="26.jpg" onclick="openImg(25)">
-    <img src="27.jpg" onclick="openImg(26)">
-    <img src="28.jpg" onclick="openImg(27)">
-    <img src="29.jpg" onclick="openImg(28)">
-    <img src="30.jpg" onclick="openImg(29)">
-    <img src="31.jpg" onclick="openImg(30)">
-    <img src="32.jpg" onclick="openImg(31)">
-    <img src="33.jpg" onclick="openImg(32)">
-    <img src="34.jpg" onclick="openImg(33)">
-    <img src="35.jpg" onclick="openImg(34)">
-    <img src="36.jpg" onclick="openImg(35)">
-    <img src="37.jpg" onclick="openImg(36)">
-    <img src="38.jpg" onclick="openImg(37)">
-    <img src="39.jpg" onclick="openImg(38)">
-    <img src="40.jpg" onclick="openImg(39)">
-    <img src="41.jpg" onclick="openImg(40)">
-    <img src="42.jpg" onclick="openImg(41)">
-    <img src="43.jpg" onclick="openImg(42)">
-    <img src="44.jpg" onclick="openImg(43)">
-    <img src="45.jpg" onclick="openImg(44)">
-    <img src="46.jpg" onclick="openImg(45)">
-    <img src="47.jpg" onclick="openImg(46)">
-    <img src="48.jpg" onclick="openImg(47)">
-    <img src="49.jpg" onclick="openImg(48)">
-    <img src="50.jpg" onclick="openImg(49)">
-    <img src="51.jpg" onclick="openImg(50)">
-    <img src="52.jpg" onclick="openImg(51)">
-    <img src="53.jpg" onclick="openImg(52)">
-    <img src="54.jpg" onclick="openImg(53)">
-    <img src="55.jpg" onclick="openImg(54)">
-    <img src="56.jpg" onclick="openImg(55)">
-    <img src="57.jpg" onclick="openImg(56)">
-    <img src="58.jpg" onclick="openImg(57)">
-    <img src="59.jpg" onclick="openImg(58)">
-    <img src="60.jpg" onclick="openImg(59)">
-    <img src="61.jpg" onclick="openImg(60)">
-    <img src="62.jpg" onclick="openImg(61)">
-    <img src="63.jpg" onclick="openImg(62)">
-    <img src="64.jpg" onclick="openImg(63)">
-    <img src="65.jpg" onclick="openImg(64)">
-    <img src="66.jpg" onclick="openImg(65)">
-    <img src="67.jpg" onclick="openImg(66)">
-    <img src="68.jpg" onclick="openImg(67)">
-    <img src="69.jpg" onclick="openImg(68)">
-    <img src="70.jpg" onclick="openImg(69)">
-    <img src="71.jpg" onclick="openImg(70)">
-    <img src="72.jpg" onclick="openImg(71)">
-    <img src="73.jpg" onclick="openImg(72)">
-    <img src="74.jpg" onclick="openImg(73)">
-    <img src="75.jpg" onclick="openImg(74)">
-    <img src="76.jpg" onclick="openImg(75)">
-    <img src="77.jpg" onclick="openImg(76)">
-    <img src="78.jpg" onclick="openImg(77)">
-    <img src="79.jpg" onclick="openImg(78)">
-    <img src="80.jpg" onclick="openImg(79)">
-    <img src="81.jpg" onclick="openImg(80)">
-    <img src="82.jpg" onclick="openImg(81)">
-    <img src="83.jpg" onclick="openImg(82)">
-    <img src="84.jpg" onclick="openImg(83)">
-    <img src="85.jpg" onclick="openImg(84)">
-    <img src="86.jpg" onclick="openImg(85)">
-    <img src="87.jpg" onclick="openImg(86)">
-    <img src="88.jpg" onclick="openImg(87)">
-    <img src="89.jpg" onclick="openImg(88)">
-    <img src="90.jpg" onclick="openImg(89)">
-    <img src="91.jpg" onclick="openImg(90)">
-    <img src="92.jpg" onclick="openImg(91)">
-    <img src="93.jpg" onclick="openImg(92)">
-    <img src="94.jpg" onclick="openImg(93)">
-    <img src="95.jpg" onclick="openImg(94)">
-    <img src="96.jpg" onclick="openImg(95)">
-    <img src="97.jpg" onclick="openImg(96)">
-    <img src="98.jpg" onclick="openImg(97)">
-    <img src="99.jpg" onclick="openImg(98)">
-    <img src="100.jpg" onclick="openImg(99)">
-  </div>
+<div class="header">
+  <h1>二班相册</h1>
+  <div class="tip">左右滑动浏览照片 · 点击图片放大</div>
 </div>
 
-<!-- 放大弹窗+翻页按钮 -->
+<div class="album-wrap" id="album">
+  <img src="1.jpg" onclick="openImg(0)">
+  <img src="2.jpg" onclick="openImg(1)">
+  <img src="3.jpg" onclick="openImg(2)">
+  <img src="4.jpg" onclick="openImg(3)">
+  <img src="5.jpg" onclick="openImg(4)">
+  <img src="6.jpg" onclick="openImg(5)">
+  <img src="7.jpg" onclick="openImg(6)">
+  <img src="8.jpg" onclick="openImg(7)">
+  <img src="9.jpg" onclick="openImg(8)">
+  <img src="10.jpg" onclick="openImg(9)">
+  <img src="11.jpg" onclick="openImg(10)">
+  <img src="12.jpg" onclick="openImg(11)">
+  <img src="13.jpg" onclick="openImg(12)">
+  <img src="14.jpg" onclick="openImg(13)">
+  <img src="15.jpg" onclick="openImg(14)">
+  <img src="16.jpg" onclick="openImg(15)">
+  <img src="17.jpg" onclick="openImg(16)">
+  <img src="18.jpg" onclick="openImg(17)">
+  <img src="19.jpg" onclick="openImg(18)">
+  <img src="20.jpg" onclick="openImg(19)">
+  <img src="21.jpg" onclick="openImg(20)">
+  <img src="22.jpg" onclick="openImg(21)">
+  <img src="23.jpg" onclick="openImg(22)">
+  <img src="24.jpg" onclick="openImg(23)">
+  <img src="25.jpg" onclick="openImg(24)">
+  <img src="26.jpg" onclick="openImg(25)">
+  <img src="27.jpg" onclick="openImg(26)">
+  <img src="28.jpg" onclick="openImg(27)">
+  <img src="29.jpg" onclick="openImg(28)">
+  <img src="30.jpg" onclick="openImg(29)">
+  <img src="31.jpg" onclick="openImg(30)">
+  <img src="32.jpg" onclick="openImg(31)">
+  <img src="33.jpg" onclick="openImg(32)">
+  <img src="34.jpg" onclick="openImg(33)">
+  <img src="35.jpg" onclick="openImg(34)">
+  <img src="36.jpg" onclick="openImg(35)">
+  <img src="37.jpg" onclick="openImg(36)">
+  <img src="38.jpg" onclick="openImg(37)">
+  <img src="39.jpg" onclick="openImg(38)">
+  <img src="40.jpg" onclick="openImg(39)">
+  <img src="41.jpg" onclick="openImg(40)">
+  <img src="42.jpg" onclick="openImg(41)">
+  <img src="43.jpg" onclick="openImg(42)">
+  <img src="44.jpg" onclick="openImg(43)">
+  <img src="45.jpg" onclick="openImg(44)">
+  <img src="46.jpg" onclick="openImg(45)">
+  <img src="47.jpg" onclick="openImg(46)">
+  <img src="48.jpg" onclick="openImg(47)">
+  <img src="49.jpg" onclick="openImg(48)">
+  <img src="50.jpg" onclick="openImg(49)">
+  <img src="51.jpg" onclick="openImg(50)">
+  <img src="52.jpg" onclick="openImg(51)">
+  <img src="53.jpg" onclick="openImg(52)">
+  <img src="54.jpg" onclick="openImg(53)">
+  <img src="55.jpg" onclick="openImg(54)">
+  <img src="56.jpg" onclick="openImg(55)">
+  <img src="57.jpg" onclick="openImg(56)">
+  <img src="58.jpg" onclick="openImg(57)">
+  <img src="59.jpg" onclick="openImg(58)">
+  <img src="60.jpg" onclick="openImg(59)">
+  <img src="61.jpg" onclick="openImg(60)">
+  <img src="62.jpg" onclick="openImg(61)">
+  <img src="63.jpg" onclick="openImg(62)">
+  <img src="64.jpg" onclick="openImg(63)">
+  <img src="65.jpg" onclick="openImg(64)">
+  <img src="66.jpg" onclick="openImg(65)">
+  <img src="67.jpg" onclick="openImg(66)">
+  <img src="68.jpg" onclick="openImg(67)">
+  <img src="69.jpg" onclick="openImg(68)">
+  <img src="70.jpg" onclick="openImg(69)">
+  <img src="71.jpg" onclick="openImg(70)">
+  <img src="72.jpg" onclick="openImg(71)">
+  <img src="73.jpg" onclick="openImg(72)">
+  <img src="74.jpg" onclick="openImg(73)">
+  <img src="75.jpg" onclick="openImg(74)">
+  <img src="76.jpg" onclick="openImg(75)">
+  <img src="77.jpg" onclick="openImg(76)">
+  <img src="78.jpg" onclick="openImg(77)">
+  <img src="79.jpg" onclick="openImg(78)">
+  <img src="80.jpg" onclick="openImg(79)">
+  <img src="81.jpg" onclick="openImg(80)">
+  <img src="82.jpg" onclick="openImg(81)">
+  <img src="83.jpg" onclick="openImg(82)">
+  <img src="84.jpg" onclick="openImg(83)">
+  <img src="85.jpg" onclick="openImg(84)">
+  <img src="86.jpg" onclick="openImg(85)">
+  <img src="87.jpg" onclick="openImg(86)">
+  <img src="88.jpg" onclick="openImg(87)">
+  <img src="89.jpg" onclick="openImg(88)">
+  <img src="90.jpg" onclick="openImg(89)">
+  <img src="91.jpg" onclick="openImg(90)">
+  <img src="92.jpg" onclick="openImg(91)">
+  <img src="93.jpg" onclick="openImg(92)">
+  <img src="94.jpg" onclick="openImg(93)">
+  <img src="95.jpg" onclick="openImg(94)">
+  <img src="96.jpg" onclick="openImg(95)">
+  <img src="97.jpg" onclick="openImg(96)">
+  <img src="98.jpg" onclick="openImg(97)">
+  <img src="99.jpg" onclick="openImg(98)">
+  <img src="100.jpg" onclick="openImg(99)">
+</div>
+
 <div id="lightbox" onclick="closeImg()">
   <button class="prev" onclick="prevImg(event)">❮</button>
   <img id="lightImg">
@@ -192,6 +220,7 @@ const images = [];
 for(let i=1;i<=100;i++){
   images.push(`${i}.jpg`);
 }
+
 let currentIndex = 0;
 const lb = document.getElementById("lightbox");
 const lbImg = document.getElementById("lightImg");
@@ -215,5 +244,6 @@ function nextImg(e){
   lbImg.src = images[currentIndex];
 }
 </script>
+
 </body>
 </html>
