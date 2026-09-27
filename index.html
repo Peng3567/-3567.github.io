@@ -3,27 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的相册</title>
+<title>二班相册</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:#111;color:#fff;}
 
-/* 竖屏：只显示旋转提示 */
-@media screen and (orientation:portrait){
-  #album{display:none;}
-  .rotate-tip{display:block;}
-}
-/* 横屏：显示相册 */
-@media screen and (orientation:landscape){
-  #album{display:block;}
-  .rotate-tip{display:none;}
-}
-
-.rotate-tip{
-  display:none;
+.tip{
   text-align:center;
-  font-size:24px;
-  padding-top:40vh;
+  font-size:20px;
+  padding:15px;
+  color:#ffffff;
 }
 
 #album{
@@ -81,10 +70,10 @@ body{background:#111;color:#fff;}
 </style>
 </head>
 <body>
-<div class="rotate-tip">📱请把手机横向旋转查看相册</div>
+<div class="tip">📱推荐把手机横向旋转，获得更好浏览效果</div>
 
 <div id="album">
-  <h2 style="text-align:center;margin-bottom:20px;">我的相册</h2>
+  <h2 style="text-align:center;margin-bottom:20px;text-align:center;">我的相册</h2>
   <div class="photo-grid">
     <img src="1.jpg" onclick="openImg(0)">
     <img src="2.jpg" onclick="openImg(1)">
