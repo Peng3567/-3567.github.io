@@ -13,30 +13,42 @@ body{
 }
 
 .header{
-  padding:16px 20px;
+  padding:16px 10px;
   border-bottom:1px solid #eee;
+  text-align:center;
 }
 .header h1{
-  font-size:22px;
-  text-align:center;
+  font-size:28px;
+  margin-bottom:10px;
 }
-.header p{
-  text-align:center;
-  color:#666;
-  font-size:14px;
-  margin-top:6px;
+/* 可编辑文字区域 */
+.edit-text{
+  font-size:16px;
+  color:#444;
+  outline:none;
+  min-height:24px;
 }
 
-/* 3列，30排 */
+/* 第一张大图：单独占一整排，左右贴边，无横向padding */
+.big-item{
+  width:100%;
+}
+.big-item img{
+  width:100%;
+  height:auto;
+  display:block;
+  cursor:pointer;
+}
+
+/* 剩下图片：3列网格 */
 .photo-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
-  grid-auto-rows:1fr;
   gap:10px;
   padding:10px;
 }
 
-/* 每张图固定 3:4，填满格子 */
+/* 普通缩略图固定3:4 */
 .photo-grid .item{
   position:relative;
   aspect-ratio:3/4;
@@ -89,12 +101,16 @@ body{
 
 <div class="header">
   <h1>二班相册</h1>
-  <p>想上传照片可以找我</p>
+  <!-- contenteditable 直接在网页上编辑文字 -->
+  <div class="edit-text" contenteditable="true">想上传图片可以找我₍ᵔ•ᴗ•ᵔ₎</div>
 </div>
 
+<!-- 1.jpg 单独占一整排，左右贴满屏幕边缘，原图比例 -->
+<div class="big-item"><img src="1.jpg" onclick="openImg(0)"></div>
+
+<!-- 从2.jpg开始，3列网格，3:4比例 -->
 <div class="photo-grid">
 
-  <div class="item"><img src="1.jpg" onclick="openImg(0)"></div>
   <div class="item"><img src="2.jpg" onclick="openImg(1)"></div>
   <div class="item"><img src="3.jpg" onclick="openImg(2)"></div>
   <div class="item"><img src="4.jpg" onclick="openImg(3)"></div>
@@ -110,7 +126,10 @@ body{
 
 <script>
 const images = [];
-for(let i=1;i<=90;i++){
+// 第一张是1.jpg
+images.push(`1.jpg`);
+// 后面从2~89
+for(let i=2;i<=89;i++){
   images.push(`${i}.jpg`);
 }
 
